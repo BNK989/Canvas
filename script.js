@@ -14,9 +14,9 @@ const mouse = {
 }
 
 canvas.addEventListener('click', function (e) {
-  init(120)
   mouse.x = e.x
   mouse.y = e.y
+  init(120)
   particleArr.push(new Particle())
 })
 
@@ -34,8 +34,8 @@ canvas.addEventListener('contextmenu', function (e) {
 window.addEventListener('resize', function () {
   canvas.width = window.innerWidth
   canvas.height = window.innerHeight
-  ctx.fillStyle = 'white'
-  ctx.fillRect(10, 20, 150, 50)
+  // ctx.fillStyle = 'white' //square
+  // ctx.fillRect(10, 20, 150, 50)
 })
 
 class Particle {
@@ -68,6 +68,7 @@ function init(n = 100) {
   for (let i = 0; i < n; i++) {
     particleArr.push(new Particle())
   }
+  console.log(particleArr)
   animate()
 }
 
