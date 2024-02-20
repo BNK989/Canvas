@@ -5,6 +5,8 @@ const ctx = canvas.getContext('2d')
 const particleArr = []
 canvas.width = window.innerWidth
 canvas.height = window.innerHeight
+let SPEED = 1
+let SIZE = 55
 
 const mouse = {
   x: undefined,
@@ -18,17 +20,16 @@ canvas.addEventListener('click', function (e) {
   particleArr.push(new Particle())
 })
 
-canvas.addEventListener('mousemove', function (e) {
-  mouse.x = e.x
-  mouse.y = e.y
-})
+// canvas.addEventListener('mousemove', function (e) {
+//   mouse.x = e.x
+//   mouse.y = e.y
+// })
 
-// function drawCircle() {
-//   ctx.fillStyle = getRandColor()
-//   ctx.beginPath()
-//   ctx.arc(mouse.x, mouse.y, getRand(), 0, Math.PI * 2)
-//   ctx.fill()
-// }
+canvas.addEventListener('contextmenu', function (e) {
+  e.preventDefault()
+  SPEED = prompt('SET SPEED (BETWEEN 1 - 9)')
+  SIZE = prompt('SET SPEED (BETWEEN 10 - 100)')
+})
 
 window.addEventListener('resize', function () {
   canvas.width = window.innerWidth
@@ -37,21 +38,15 @@ window.addEventListener('resize', function () {
   ctx.fillRect(10, 20, 150, 50)
 })
 
-function animate() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height)
-  handleParticle()
-  requestAnimationFrame(animate)
-}
-
 class Particle {
   constructor() {
     this.x = mouse.x
-    this.y = mouse.y
+    // this.y = mouse.y
     // this.x = Math.random() * canvas.width
-    // this.y = Math.random() * canvas.height
-    this.size = getRand(60)
-    this.speedX = Math.random() * 6 - 3
-    this.speedY = Math.random() * 6 - 3
+    this.y = Math.random() * canvas.height
+    this.size = getRand(SIZE)
+    this.speedX = Math.random() * SPEED - SPEED/2
+    this.speedY = Math.random() * SPEED - SPEED/2
     this.color = getRandColor()
   }
 
@@ -76,6 +71,12 @@ function init(n = 100) {
   animate()
 }
 
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height)
+  handleParticle()
+  requestAnimationFrame(animate)
+}
+
 function handleParticle() {
   particleArr.forEach((particle, idx) => {
     particle.update()
@@ -95,6 +96,13 @@ function getRandColor() {
 function getRand(n = 100) {
   return Math.random() * n
 }
+
+// function drawCircle() {
+//   ctx.fillStyle = getRandColor()
+//   ctx.beginPath()
+//   ctx.arc(mouse.x, mouse.y, getRand(), 0, Math.PI * 2)
+//   ctx.fill()
+// }
 
 // ctx.fillStyle = 'white'
 // ctx.strokeStyle = 'red'
