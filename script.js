@@ -53,7 +53,7 @@ class Particle {
   update() {
     this.x += this.speedX
     this.y += this.speedY
-    if (this.size > 0.1) this.size -= 0.1
+    if (this.size > 0.1) this.size -= 0.02
   }
 
   draw() {
