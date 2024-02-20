@@ -1,5 +1,5 @@
 'use strict'
-
+//https://youtu.be/Yvz_axxWG4Y?si=AOB3ePbxzw45E7Co
 const canvas = document.getElementById('canvasA')
 const ctx = canvas.getContext('2d')
 const particleArr = []
@@ -58,7 +58,7 @@ class Particle {
   update() {
     this.x += this.speedX
     this.y += this.speedY
-    if(this.size > 0.1) this.size -= .1
+    if (this.size > 0.1) this.size -= 0.1
   }
 
   draw() {
@@ -77,13 +77,13 @@ function init(n = 100) {
 }
 
 function handleParticle() {
-  particleArr.forEach((particle,idx) => {
+  particleArr.forEach((particle, idx) => {
     particle.update()
     particle.draw()
-    if(particle.size <= .1){
-        particle.size = 20
-        setTimeout(() => particleArr.splice(idx,1),50)
-    } 
+    if (particle.size <= 0.1) {
+      particle.size = 20
+      setTimeout(() => particleArr.splice(idx, 1), 50)
+    }
   })
 }
 
